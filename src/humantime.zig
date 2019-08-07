@@ -89,3 +89,7 @@ test "2h5s" {
 test "5d4h3m2s" {
     testing.expectEqual(seconds("5d4h3m2s"), 446582);
 }
+
+test "5d4h3m2s" {
+    testing.expectEqual(milliseconds("5d4h3m2s"), 446582 * 1000);
+}
