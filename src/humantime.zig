@@ -2,10 +2,22 @@ const std = @import("std");
 const testing = std.testing;
 const fmt = std.fmt;
 
+/// Takes a string such as "5d4h3h2s" and returns the number of seconds it represents.
+/// Available modifiers are:
+/// d: days
+/// h: hours
+/// m: minutes
+/// s: seconds
 pub fn seconds(human_string: []const u8) u64 {
     return humanStringToInt(human_string, 1);
 }
 
+/// Takes a string such as "5d4h3m2s" and returns the number of milliseconds it represents.
+/// Available modifiers are:
+/// d: days
+/// h: hours
+/// m: minutes
+/// s: seconds
 pub fn milliseconds(human_string: []const u8) u64 {
     return humanStringToInt(human_string, 1000);
 }
