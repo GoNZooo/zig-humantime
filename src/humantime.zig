@@ -35,6 +35,10 @@ fn humanStringToInt(human_string: []const u8, multiplier: u32) u32 {
                 total_time += 3600 * multiplier * current_number;
                 current_number = 0;
             },
+            'd' => {
+                total_time += 86400 * multiplier * current_number;
+                current_number = 0;
+            },
             else => continue,
         }
     }
@@ -80,4 +84,8 @@ test "2m5s" {
 
 test "2h5s" {
     testing.expectEqual(comptime seconds("2h5s"), 7205);
+}
+
+test "5d4h3m2s" {
+    testing.expectEqual(seconds("5d4h3m2s"), 446582);
 }
