@@ -64,6 +64,12 @@ test "2h4m6s in milliseconds" {
     testing.expectEqual(time, comptime seconds(format_string) * 1000);
 }
 
+test "2h4m6s in milliseconds at runtime" {
+    const format_string = "2h4m6s";
+    const time = milliseconds(format_string);
+    testing.expectEqual(time, seconds(format_string) * 1000);
+}
+
 test "2h" {
     testing.expectEqual(comptime seconds("2h"), 7200);
 }
