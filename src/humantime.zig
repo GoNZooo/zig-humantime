@@ -22,16 +22,20 @@ pub fn milliseconds(human_string: []const u8) u64 {
     return humanStringToInt(human_string, 1000);
 }
 
-fn humanStringToInt(human_string: []const u8, multiplier: u32) u32 {
+fn humanStringToInt(human_string: []const u8, multiplier: u32) u64 {
     var current_number: u32 = 0;
-    var total_time: u32 = 0;
+    var total_time: u64 = 0;
 
     for (human_string) |s| {
         switch (s) {
             '0' => current_number *= 10,
             '1'...'9' => {
-                // pre-requisite already checked in the switch, fatal error if we error out on this
-                const digit = fmt.charToDigit(s, 10) catch unreachable;
+                const digit = fmt.charToDigit(s, 10) catch |err| {
+                    switch (err) {
+                        // pre-requisite already checked in the switch, fatal error if we error out on this
+                        error.InvalidCharacter => @panic("Somehow we have a bad digit between 1 and 9"),
+                    }
+                };
                 current_number *= 10;
                 current_number += digit;
             },
