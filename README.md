@@ -20,4 +20,8 @@ test "1h2m3s in milliseconds" {
     // @compileLog(time) -> runtime value
     testing.expectEqual(time, comptime seconds(format_string) * 1000);
 }
+
+test "5d4h3m2s" {
+    testing.expectEqual(seconds("5d4h3m2s"), 446582);
+}
 ```
